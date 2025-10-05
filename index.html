@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <title>Jardin Gourmand</title>
+  </head>
+  <body>
+    <header id="header">
+      
+        <img class="logo" src="images/3.png" alt="jardin_gourmand_logo" />
+      
+      <ul class="informations">
+        <li><i class="fa-solid fa-phone"></i> 01 42 75 19 36</li>
+        <li>
+          <i class="fa-solid fa-location-pin"></i> 12 Rue des Épicuriens, 75008
+          Paris
+        </li>
+      </ul>
+      <nav class="btn_header">
+        <button>Voir le menu</button>
+        <button>Reservez une table</button>
+      </nav>
+      <input id="checkbox" type="checkbox" />
+      <div id="toggle_menue">
+        
+        <label class="toggle" for="checkbox">
+          <div id="bar1" class="bars"></div>
+          <div id="bar2" class="bars"></div>
+          <div id="bar3" class="bars"></div>
+        </label>
+      </div>
+
+      <div id="menue">
+        <ul class="informationss">
+          <li><i class="fa-solid fa-phone"></i> 01 42 75 19 36</li>
+          <li><i class="fa-solid fa-location-pin"></i> 12 Rue des Épicuriens, 75008 Paris</li>
+        </ul>
+      
+        <nav class="btn_headerr">
+          <button>Voir le menu</button>
+          <button>Reservez une table</button>
+        </nav>
+      </div>
+      
+    </header>
+
+    <section class="banniere">
+      <div class="banniere_img">
+        <img src="images/jardin_gourmand_paleron.jpg" alt="" />
+      </div>
+      <div class="logo-banniere">
+        <img src="images/1.png" alt="logo_jardin_gourmand" />
+      </div>
+    </section>
+    <div class="rdv">
+      <form>
+        <select name="" id="">
+          <option value="1">1 Personne</option>
+          <option value="2">2 Personnes</option>
+          <option value="3">3 Personnes</option>
+          <option value="4">4 Personnes</option>
+          <option value="5">5 Personnes</option>
+        </select>
+
+        <select name="" id="">
+          <option value="">18h00</option>
+          <option value="">19h00</option>
+          <option value="">20h00</option>
+          <option value="">21h00</option>
+          <option value="">22h00</option>
+        </select>
+
+        <input type="date" id="date" name="date" />
+      </form>
+      <div class="button_resa">
+        <button>Réservez</button>
+      </div>
+    </div>
+    <section class="menu dark-section">
+      <div class="box1">
+        <p>Découvrir</p>
+        <h2>Le menu</h2>
+        <h3>
+          Au Jardin Gourmand, la cuisine se fait poésie et voyage des sens.
+          Venez savourer une expérience où l’élégance rencontre la convivialité.
+        </h3>
+        <button>Voir le menu</button>
+      </div>
+      <div class="box2">
+        <div class="ligne_1">
+          <div class="ligne_2">
+            <div class="img_menu">
+              <img src="images/joue_de_boeuf.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="decouverte">
+      <div class="decouverte_img">
+        <img src="images/image1.jpg" alt="" />
+      </div>
+      <div class="box">
+        <h2>Découvrez le Jardin Gourmand</h2>
+        <h3>
+          Plongez dans un univers où saveurs et créativité se rencontrent. Notre
+          cuisine, raffinée mais accessible, sublime les produits de saison pour
+          offrir des plats qui éveillent les sens. Dans une ambiance chaleureuse
+          et élégante, chaque repas devient un moment unique à partager.
+        </h3>
+        <button>Réservez une table</button>
+      </div>
+    </section>
+
+    <footer>
+      <h5>Le jardin gourmand | 2024 - 2025</h5>
+      <h5>TERMES D’UTILISATIONS | COOKIES CONTACT</h5>
+    </footer>
+
+    <script>
+      const header = document.getElementById("header");
+      const darkSections = document.querySelectorAll(".dark-section");
+
+      window.addEventListener("scroll", () => {
+        // Glassmorphism au scroll
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        // Texte blanc si le header est au-dessus d'une section foncée
+        let onDark = false;
+        const headerBottom = header.getBoundingClientRect().bottom;
+
+        darkSections.forEach((section) => {
+          const top = section.getBoundingClientRect().top;
+          const bottom = section.getBoundingClientRect().bottom;
+          if (headerBottom > top && headerBottom < bottom) {
+            onDark = true;
+          }
+        });
+
+        if (onDark) {
+          header.classList.add("white-text");
+        } else {
+          header.classList.remove("white-text");
+        }
+      });
+      // Récupère la date du jour
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0"); // mois 2 chiffres
+      const dd = String(today.getDate()).padStart(2, "0"); // jour 2 chiffres
+
+      const todayFormatted = `${yyyy}-${mm}-${dd}`;
+
+      // Applique la date comme min sur l’input
+      document.getElementById("date").setAttribute("min", todayFormatted);
+      const decouverte = document.querySelector(".decouverte");
+
+      window.addEventListener("scroll", () => {
+        const rect = decouverte.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          decouverte.classList.add("show");
+        }
+      });
+
+  
+    </script>
+  </body>
+</html>
